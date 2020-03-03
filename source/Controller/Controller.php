@@ -32,6 +32,7 @@ abstract class Controller
         $this->view = Engine::create($dir,"php");
         $this->router = $router;
         $this->view->addData(["rota" => (new Rota($this->router))]);
+        $this->view->addData(["alert" => (new Alert())]);
         $this->view->addData(["router" => $this->router]);
 
         new DataStart();

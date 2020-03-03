@@ -67,7 +67,7 @@
 
         <div class="content mt-3">
 
-         <?php //$v->insert("sections/alerts") ?>
+         <?php $v->insert("sections/alerts") ?>
 
          <div class="col-sm-12">
          <?= $v->section("content") ?>
