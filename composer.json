@@ -1,0 +1,29 @@
+{
+  "name": "brlga002/nutrisucos",
+  "description": "Site de Frutas",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Gabriel Fernandes Lima",
+      "email": "gabriel.lima1000@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Source\\": "source/"
+    },
+    "files": [
+      "source/Config.php"
+    ]
+  },
+  "require": {
+    "php": "^7.2",
+    "ext-pdo": "*",
+    "coffeecode/datalayer": "1.1.*",
+    "coffeecode/router": "1.0.*",
+    "league/plates": "v4.0.0-alpha",
+    "phpoffice/phpword": "^0.17.0",
+    "wgenial/numeroporextenso": "3.0.0"
+  }
+}
