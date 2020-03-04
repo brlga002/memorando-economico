@@ -16,7 +16,7 @@ class FavorecidoController extends Controller
     
     public function home(): void
     {   
-        $favorecidos = ((new Favorecido))->find()->fetch(true);
+        $favorecidos = ((new Favorecido))->find()->order("favorecido ASC")->fetch(true);
 
         echo $this->view->render("favorecido/home",[
             "title" => "Home Favorecido | ". SITE,

@@ -11,12 +11,11 @@
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">N°</th>
+            <th>N°</th>
             <th>Data</th>
             <th>Valor</th>
-            <th>N° doc.</th>
-            <th>Desc.</th>
-            <th>Arquivo</th>            
+            <th>Referente</th>            
+            <th>Favorefido</th>
             <th></th>            
             <th></th>            
             <th></th>            
@@ -28,21 +27,21 @@
               <tr>
                 <th scope="row"><?= $memorando->id ?></th>
                 <td><?= $memorando->numero ?></td>                
-                <td><?= formataData($memorando->dataMemorando) ?></td>
-                <td><?= $memorando->valor ?></td>
-                <td><?= $memorando->nDoc ?></td>
-                <td><?= $memorando->nomeArquivo ?></td>
+                <td><?= date("d/m/Y",strtotime($memorando->dataMemorando)) ?></td>
+                <td><?= formataMoeda($memorando->valor,false)?></td>
+                <td><?= $memorando->referente() ?> <?= $memorando->referenteComplemento ?></td>
+                <td><?= $memorando->favorecido() ?></td>
                 <td>
                   <a href="<?= $rota->bindRota("memorando.edit",$memorando->id); ?>" class="btn btn-secondary btn-sm">
-                  <i class="fa fa-edit"></i>&nbsp; Editar</a>
+                  <i class="fa fa-edit"></i></a>
                 </td>
                 <td>
                   <a href="<?= $rota->bindRota("memorando.delete",$memorando->id); ?>" class="btn btn-danger btn-sm">
-                  <i class="fa fa-trash"></i>&nbsp;Deletar</a>
+                  <i class="fa fa-trash"></i></a>
                 </td>
                 <td>
                   <a href="<?= $rota->bindRota("memorando.geraDocumento",$memorando->id); ?>" class="btn btn-info btn-sm">
-                  <i class="fa fa-file-text-o"></i>&nbsp;Gera</a>
+                  <i class="fa fa-file-text-o"></i></a>
                 </td>
               </tr>
             <?php endforeach?>

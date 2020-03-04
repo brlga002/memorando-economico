@@ -32,11 +32,17 @@ function url(string $uri = null): string
     return ROOT;
 }
 
-function formataMoeda(string $valor): string
+function formataMoeda(string $valor, $sifrao = true): String
 {
     $valorFormatado = "R$ 0,00";
     if ($valor !== "") {
-        $valorFormatado = "R$ " . number_format($valor, 2, ',', '.');           
+                
+        if($sifrao){
+            $valorFormatado = "R$ " . number_format($valor, 2, ',', '.');
+        } else {
+            $valorFormatado = number_format($valor, 2, ',', '.');   
+        }
+        
     } 
     return $valorFormatado;
 }

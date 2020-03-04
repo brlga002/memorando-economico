@@ -22,10 +22,10 @@ class MemorandoController extends Controller
     
     public function formNew(): void
     {          
-        $subelemento = (new Subelemento())->find()->fetch(true);
-        $favorecido = (new Favorecido())->find()->fetch(true);
-        $conta = (new Conta())->find()->fetch(true);
-        $referente = (new Referente())->find()->fetch(true);
+        $subelemento = (new Subelemento())->find()->order("subelemento ASC")->fetch(true);
+        $favorecido = (new Favorecido())->find()->order("favorecido ASC")->fetch(true);
+        $conta = (new Conta())->find()->order("conta ASC")->fetch(true);
+        $referente = (new Referente())->find()->order("referente ASC")->fetch(true);
 
         $proximoNumero = (new Memorando())->proximoNumero('2020');
   
@@ -69,9 +69,22 @@ class MemorandoController extends Controller
         $favorecido = filter_input(INPUT_POST, "favorecido", FILTER_SANITIZE_NUMBER_INT);
         $conta = filter_input(INPUT_POST, "conta", FILTER_SANITIZE_NUMBER_INT);
         $referente = filter_input(INPUT_POST, "referente", FILTER_SANITIZE_NUMBER_INT);
+        $referenteComplemento = filter_input(INPUT_POST, "referenteComplemento", FILTER_SANITIZE_STRIPPED);
+        $competencia = filter_input(INPUT_POST, "competencia", FILTER_SANITIZE_STRIPPED);
+        $referenteComplemento .= ($competencia !== "") ? " " . $competencia : "";
+
+        $referenteTexto = $referente;
+        if($referenteTexto !== ""){
+           $referenteTexto = (new Referente())->findById($referenteTexto)->referente;
+           $referenteTexto .= $referenteComplemento;           
+        } else {
+           $referenteTexto .= $referenteComplemento; 
+        }      
 
 
-        $nomeArquivo = zeroEsquerda($numeroMemorando,4) . " - ". (new Referente())->findById($referente)->referente;
+        $nomeArquivo = zeroEsquerda($numeroMemorando,4) . " - ". $referenteTexto;
+        $nomeArquivo .= " - ". date("d-m-Y",strtotime($dataMemorando));
+        $nomeArquivo = str_replace("/", "|", $nomeArquivo);
 
         $memo = new Memorando();
         $memo->numero = $numeroMemorando;
@@ -83,6 +96,7 @@ class MemorandoController extends Controller
         $memo->id_conta = $conta;
         $memo->id_favorecido = $favorecido;
         $memo->id_referente = $referente;
+        $memo->referenteComplemento = $referenteComplemento;
         $memo->id_subelemento = $subelemento;
         $memo->save();
                       
@@ -100,7 +114,22 @@ class MemorandoController extends Controller
         $favorecido = filter_input(INPUT_POST, "favorecido", FILTER_SANITIZE_NUMBER_INT);
         $conta = filter_input(INPUT_POST, "conta", FILTER_SANITIZE_NUMBER_INT);
         $referente = filter_input(INPUT_POST, "referente", FILTER_SANITIZE_NUMBER_INT);
-        $nomeArquivo = zeroEsquerda($numeroMemorando,4) . " - ". (new Referente())->findById($referente)->referente;
+        $referenteComplemento = filter_input(INPUT_POST, "referenteComplemento", FILTER_SANITIZE_STRIPPED);
+        $competencia = filter_input(INPUT_POST, "competencia", FILTER_SANITIZE_STRIPPED);
+        $referenteComplemento .= ($competencia !== "") ? " " . $competencia : "";
+          
+        $referenteTexto = $referente;
+        if($referenteTexto !== ""){
+           $referenteTexto = (new Referente())->findById($referenteTexto)->referente;
+           $referenteTexto .= $referenteComplemento;           
+        } else {
+           $referenteTexto .= $referenteComplemento; 
+        }
+
+
+        $nomeArquivo = zeroEsquerda($numeroMemorando,4) . " - ". $referenteTexto;
+        $nomeArquivo .= " - ". date("d-m-Y",strtotime($dataMemorando));
+        $nomeArquivo = str_replace("/", "|", $nomeArquivo);
 
         $memo = (new Memorando())->findById($data["id"]);
         $memo->numero = $numeroMemorando;
@@ -112,6 +141,7 @@ class MemorandoController extends Controller
         $memo->id_conta = $conta;
         $memo->id_favorecido = $favorecido;
         $memo->id_referente = $referente;
+        $memo->referenteComplemento = $referenteComplemento;
         $memo->id_subelemento = $subelemento;
         $memo->save();
        
@@ -133,26 +163,32 @@ class MemorandoController extends Controller
 
     public function geraDocumento(array $data): void
     {          
-        $memo = (new Memorando())->findById($data["id"]);        
+        $memo = (new Memorando())->findById($data["id"]);  
+
+        $referente = "";
+
+        if($memo->id_referente !== ""){
+           $referente = (new Referente())->findById($memo->id_referente)->referente;
+        }     
 
         $subelemento = (new Subelemento())->findById($memo->id_subelemento)->subelemento;
         $favorecido = (new Favorecido())->findById($memo->id_favorecido)->favorecido;
         $conta = (new Conta())->findById($memo->id_conta)->conta;
-        $referente = (new Referente())->findById($memo->id_referente)->referente;
         $valorExtenso = (new NumeroPorExtenso())->converter($memo->valor);
         $dados= [
             'memorando' => zeroEsquerda($memo->numero,4),
             'dataMemorando' => formataDataParaDocumento($memo->dataMemorando),
-            'valor' => $memo->valor,
+            'valor' => formataMoeda($memo->valor),
             'valorExtenso' => $valorExtenso,
             'referente' => $referente,
+            'referenteComplemento' => (isset($memo->referenteComplemento)) ? "{$memo->referenteComplemento}." : ".",
             'subelemento' => $subelemento,
             'favorecido' => $favorecido,
             'nDoc' => $memo->nDoc,
             'conta' => $conta,
         ];
 
-        $nomeArquivo = zeroEsquerda($memo->numero,4) . " - ". $referente;
+        $nomeArquivo = $memo->nomeArquivo;
 
         $documento = new Word();
         $documento->setModelo("memorandoEconomico");        

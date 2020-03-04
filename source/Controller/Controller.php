@@ -40,7 +40,7 @@ abstract class Controller
 
     public function home(): void
     {   
-        $memorandos = ((new Memorando))->find()->fetch(true);
+        $memorandos = ((new Memorando))->find()->order("id DESC")->fetch(true);
 
         echo $this->view->render("home",[
             "title" => "Home | ". SITE,

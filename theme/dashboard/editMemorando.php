@@ -1,6 +1,6 @@
 <?php $v->layout("_theme"); ?>
 
-<div class="col-lg-6">
+<div class="col-lg-12">
   <div class="card">
     <div class="card-header">
       <strong>Editar</strong> Memorando
@@ -25,7 +25,8 @@
         </div>
 
         <div class="form-group">
-        <select required class="form-control" id="referente" name="referente">          
+        <label for="referente" class="form-control-label">Referente</label>
+        <select class="form-control" id="referente" name="referente">          
           <option value="">Escolha uma referente</option>
         <?php foreach ($referente as $key => $referente) : ?>            
           <option value="<?= $referente->id ?>" <?= ($memorando->id_referente == $referente->id) ? "selected" : "" ; ?>>
@@ -34,10 +35,35 @@
         <?php endforeach ?>  
         </select>
         </div>
+        
+        <div class="form-group">
+          <label for="referenteComplemento" class=" form-control-label">Complemento Referente (Soma ao texto de Referente)</label>
+          <input type="text" id="referenteComplemento" name="referenteComplemento" value="<?= $memorando->referenteComplemento ?>" class="form-control">
+        </div>
 
         <div class="form-group">
+        <label for="competencia" class="form-control-label">Competência MES/ANO</label>
+        <select class="form-control" id="competencia" name="competencia">
+              <option value=""></option>
+              <option value="JAN/2020">JAN/2020</option>
+              <option value="FEV/2020">FEV/2020</option>
+              <option value="MAR/2020">MAR/2020</option>
+              <option value="ABR/2020">ABR/2020</option>
+              <option value="MAI/2020">MAI/2020</option>
+              <option value="JUN/2020">JUN/2020</option>
+              <option value="JUL/2020">JUL/2020</option>
+              <option value="AGO/2020">AGO/2020</option>
+              <option value="SET/2020">SET/2020</option>
+              <option value="OUT/2020">OUT/2020</option>
+              <option value="NOV/2020">NOV/2020</option>
+              <option value="DEZ/2020">DEZ/2020</option>
+        </select>
+        </div>
+
+        <div class="form-group">
+        <label for="conta" class="form-control-label">Conta</label>
         <select required class="form-control" id="conta" name="conta">
-          <option value="">Escolha uma conta</option>
+          <option value=""></option>
         <?php foreach ($conta as $key => $conta) : ?>            
           <option value="<?= $conta->id ?>" <?= ($memorando->id_conta == $conta->id) ? "selected" : "" ; ?>>
             <?= $conta->conta ?>
@@ -47,8 +73,9 @@
         </div>
 
         <div class="form-group">
+        <label for="favorecido" class="form-control-label">Favorecido</label>
         <select required class="form-control" id="favorecido" name="favorecido">
-          <option value="">Escolha uma favorecido</option>
+          <option value=""></option>
         <?php foreach ($favorecido as $key => $favorecido) : ?>            
           <option value="<?= $favorecido->id ?>" <?= ($memorando->id_favorecido == $favorecido->id) ? "selected" : "" ; ?>>
             <?= $favorecido->favorecido ?>
@@ -59,8 +86,9 @@
 
          
         <div class="form-group">
+        <label for="subelemento" class="form-control-label">Subelemento</label>
         <select required class="form-control" id="subelemento" name="subelemento">
-          <option value="">Escolha uma subelemento</option>
+          <option value=""></option>
         <?php foreach ($subelemento as $key => $subelemento) : ?>            
           <option value="<?= $subelemento->id ?>" <?= ($memorando->id_subelemento == $subelemento->id) ? "selected" : "" ; ?>>
             <?= $subelemento->subelemento ?>
