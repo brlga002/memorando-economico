@@ -2,6 +2,7 @@
 
 <div class="col-lg-12">
   <h1>Referentes</h1>
+  <a href="<?= $router->route("referente.new") ?>" class="btn btn-success"> <i class="menu-icon fa fa-plus"></i>Novo referente </a>
   <div class="card">
     <div class="card-header">
       <strong class="card-title">Listagem de Referentes</strong>

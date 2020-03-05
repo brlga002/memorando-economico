@@ -2,6 +2,7 @@
 
 <div class="col-lg-12">
   <h1>Favorecidos</h1>
+  <a href="<?= $router->route("favorecido.new") ?>" class="btn btn-success"> <i class="menu-icon fa fa-plus"></i>Novo favorecido </a>
   <div class="card">
     <div class="card-header">
       <strong class="card-title">Listagem de Favorecidos</strong>

@@ -2,6 +2,7 @@
 
 <div class="col-lg-12">
   <h1>Home</h1>
+  <a href="<?= $router->route("memorando.new") ?>" class="btn btn-success"> <i class="menu-icon fa fa-plus"></i>Novo Memorando </a>
   <div class="card">
     <div class="card-header">
       <strong class="card-title">Listagem de Memos</strong>

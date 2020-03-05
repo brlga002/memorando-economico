@@ -2,6 +2,7 @@
 
 <div class="col-lg-12">
   <h1>subelementos</h1>
+  <a href="<?= $router->route("subelemento.new") ?>" class="btn btn-success"> <i class="menu-icon fa fa-plus"></i>Novo subelemento </a>
   <div class="card">
     <div class="card-header">
       <strong class="card-title">Listagem de subelementos</strong>

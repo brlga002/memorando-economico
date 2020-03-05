@@ -2,6 +2,7 @@
 
 <div class="col-lg-12">
   <h1>Contas</h1>
+  <a href="<?= $router->route("conta.new") ?>" class="btn btn-success"> <i class="menu-icon fa fa-plus"></i>Nova conta</a>
   <div class="card">
     <div class="card-header">
       <strong class="card-title">Listagem de Contas</strong>
