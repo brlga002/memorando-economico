@@ -6,13 +6,13 @@ date_default_timezone_set('America/Manaus');
 
 define("SITE", "#Memos Gabriel");
 
-define("ROOT", "http://192.168.0.48/memos");
+define("ROOT", "http://localhost/memosEconomico");
 
 define("DATA_LAYER_CONFIG", [
 "driver" => "mysql",
 "host" => "localhost",
 "port" => "3306",
-"dbname" => "memos",
+"dbname" => "memorandosEconomicos",
 "username" => "root",
 "passwd" => "",
 "options" => [
