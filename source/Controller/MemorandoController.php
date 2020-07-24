@@ -99,6 +99,8 @@ class MemorandoController extends Controller
         $memo->referenteComplemento = $referenteComplemento;
         $memo->id_subelemento = $subelemento;
         $memo->save();
+
+        //print_r($memo);
                       
        $this->router->redirect("home");
     }
