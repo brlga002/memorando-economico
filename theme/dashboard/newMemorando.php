@@ -19,6 +19,10 @@
           <label for="valor" class=" form-control-label">Valor</label>
           <input type="number" step="0.01" min="0" id="valor" name="valor" class="form-control" required>
         </div>
+          <div class="form-group">
+              <label for="numeroProcesso" class=" form-control-label">Nº Processo</label>
+              <input type="text" id="numeroProcesso" name="numeroProcesso" class="form-control" required>
+          </div>
         <div class="form-group">
           <label for="nDoc" class=" form-control-label">N° Doc</label>
           <input type="text" id="nDoc" name="nDoc" class="form-control" required>

@@ -15,6 +15,10 @@
           <label for="dataMemorando" class=" form-control-label">Data Memorando</label>
           <input type="date" name="dataMemorando" value="<?= $memorando->dataMemorando ?>" class="form-control" required>          
         </div>
+      <div class="form-group">
+          <label for="dataMemorando" class=" form-control-label">Nº Processo</label>
+          <input type="text" name="numeroProcesso" value="<?= $memorando->numeroProcesso ?>" class="form-control" required>
+      </div>
         <div class="form-group">
           <label for="valor" class=" form-control-label">Valor</label>
           <input type="number" step="0.01" min="0" id="valor" name="valor" value="<?= $memorando->valor ?>" class="form-control" required>
