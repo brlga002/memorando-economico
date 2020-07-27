@@ -47,7 +47,12 @@ $route->group("subelemento");
     $route->post("/store", "SubelementoController:store","subelemento.store");    
     $route->get("/edit/{id}", "SubelementoController:edit","subelemento.edit");    
     $route->get("/delete/{id}", "SubelementoController:delete","subelemento.delete");    
-    $route->post("/update/{id}", "SubelementoController:update","subelemento.update");    
+    $route->post("/update/{id}", "SubelementoController:update","subelemento.update");
+
+$route->group("etiqueta");
+    $route->get("/{id}", "EtiquetaController:edit","etiqueta.edit");
+
+
 
 /* Error */
 $route->group("ops");
