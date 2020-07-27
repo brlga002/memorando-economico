@@ -62,6 +62,7 @@ class MemorandoController extends Controller
     {        
         $numeroMemorando = filter_input(INPUT_POST, "memorando", FILTER_SANITIZE_STRIPPED);
         $dataMemorando = filter_input(INPUT_POST, "dataMemorando");
+        $numeroProcesso = filter_input(INPUT_POST, "numeroProcesso");
         $valor = filter_input(INPUT_POST, "valor", FILTER_SANITIZE_STRIPPED);
         $valorExtenso = (new NumeroPorExtenso())->converter($valor);
         $nDoc = filter_input(INPUT_POST, "nDoc", FILTER_SANITIZE_STRIPPED);
@@ -89,6 +90,7 @@ class MemorandoController extends Controller
         $memo = new Memorando();
         $memo->numero = $numeroMemorando;
         $memo->dataMemorando = $dataMemorando;
+        $memo->numeroProcesso = $numeroProcesso;
         $memo->anoMemorando = date("Y",strtotime($dataMemorando));
         $memo->valor = $valor;
         $memo->nDoc = $nDoc;
@@ -109,6 +111,8 @@ class MemorandoController extends Controller
     {          
         $numeroMemorando = filter_input(INPUT_POST, "memorando", FILTER_SANITIZE_STRIPPED);
         $dataMemorando = filter_input(INPUT_POST, "dataMemorando");
+        $numeroProcesso = filter_input(INPUT_POST, "numeroProcesso");
+
         $valor = filter_input(INPUT_POST, "valor", FILTER_SANITIZE_STRIPPED);
         $valorExtenso = (new NumeroPorExtenso())->converter($valor);
         $nDoc = filter_input(INPUT_POST, "nDoc", FILTER_SANITIZE_STRIPPED);
@@ -136,6 +140,7 @@ class MemorandoController extends Controller
         $memo = (new Memorando())->findById($data["id"]);
         $memo->numero = $numeroMemorando;
         $memo->dataMemorando = $dataMemorando;
+        $memo->numeroProcesso = $numeroProcesso;
         $memo->anoMemorando = date("Y",strtotime($dataMemorando));
         $memo->valor = $valor;
         $memo->nDoc = $nDoc;
