@@ -24,6 +24,7 @@
     "coffeecode/router": "1.0.*",
     "league/plates": "v4.0.0-alpha",
     "phpoffice/phpword": "^0.17.0",
-    "wgenial/numeroporextenso": "3.0.0"
+    "wgenial/numeroporextenso": "3.0.0",
+    "fpdf/fpdf": "^1.82"
   }
 }
