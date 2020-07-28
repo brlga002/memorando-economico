@@ -26,55 +26,59 @@ class EtiquetaController extends Controller
         $this->pdf->AddPage('P',array('216','279.4'));
     }
 
-    public function edit(array $data): void
+    public function show(array $data): void
     {
-        $memorando = (new Memorando())->findById($data["id"]);
-        $subelemento = (new Subelemento())->find()->fetch(false);
-        $favorecido = (new Favorecido())->find()->fetch(false);
-        $conta = (new Conta())->find()->fetch(false);
-        $referente = (new Referente())->find()->fetch(false);
+        $posisaoEtiqueta = $data["id0"];
+        unset($data["id0"]);
 
-        $memorando->valor = formataMoeda($memorando->valor);
-        $memorando->dataMemorando = formataData($memorando->dataMemorando);
+        foreach ($data as $key => $id){
+            $memorando = (new Memorando())->findById($id);
+            //$subelemento = (new Subelemento())->findById($memorando->id_subelemento);
+            $favorecido = (new Favorecido())->findById($memorando->id_favorecido);
+            $conta = (new Conta())->find()->findById($memorando->id_conta);
+            $referente = (new Referente())->findById($memorando->id_referente);
+            $memorando->valor = formataMoeda($memorando->valor);
+            $memorando->dataMemorando = formataData($memorando->dataMemorando);
 
+            $this->getEtiqueta($memorando, $referente, $favorecido, $conta, $posisaoEtiqueta);
+            $posisaoEtiqueta++;
+        }
+
+        $this->pdf->Output();
+    }
+
+    protected function getEtiqueta($memorando, $referente, $favorecido, $conta, $posisaoEtiqueta = 0): void
+    {
         $xTextoEtiqueta = array('7.5','118.1','7.5','118.1','7.5','118.1');
         $yTextoEtiqueta = array('23','23','109','109','195','195');
         $xRetangulo = array('2.5','113.1','2.5','113.1','2.5','113.1');
         $yRetangulo = array('16','16','102','102','188','188');
 
-
         $this->pdf->SetFont('Arial','',10);
-        for ($i = 1; $i <= 5; $i++){
-            $this->pdf->Text($xTextoEtiqueta[$i],$yTextoEtiqueta[$i],"Processo N°: {$memorando->numeroProcesso}");
-            $this->pdf->Text($xTextoEtiqueta[$i],$yTextoEtiqueta[$i]+5,"Data: {$memorando->dataMemorando}");
-            $this->pdf->Text($xTextoEtiqueta[$i],$yTextoEtiqueta[$i]+10,"Setor: Tesouraria");
-            $this->pdf->Text($xTextoEtiqueta[$i],$yTextoEtiqueta[$i]+15,"Referente: {$referente->referente}");
-            $this->pdf->Text($xTextoEtiqueta[$i],$yTextoEtiqueta[$i]+20,"Favorecido: {$favorecido->favorecido}");
-            $this->pdf->Text($xTextoEtiqueta[$i],$yTextoEtiqueta[$i]+25,"Valor: {$memorando->valor} ");
-            $this->pdf->Text($xTextoEtiqueta[$i],$yTextoEtiqueta[$i]+30,"Conta: {$conta->conta}");
-        }
+        $this->pdf->Text($xTextoEtiqueta[$posisaoEtiqueta],$yTextoEtiqueta[$posisaoEtiqueta],"Processo N°: {$memorando->numeroProcesso}");
+        $this->pdf->Text($xTextoEtiqueta[$posisaoEtiqueta],$yTextoEtiqueta[$posisaoEtiqueta]+5,"Data: {$memorando->dataMemorando}");
+        $this->pdf->Text($xTextoEtiqueta[$posisaoEtiqueta],$yTextoEtiqueta[$posisaoEtiqueta]+10,"Setor: Tesouraria");
+        $this->pdf->Text($xTextoEtiqueta[$posisaoEtiqueta],$yTextoEtiqueta[$posisaoEtiqueta]+15,"Referente: {$referente->referente}");
+        $this->pdf->Text($xTextoEtiqueta[$posisaoEtiqueta],$yTextoEtiqueta[$posisaoEtiqueta]+20,"Favorecido: {$favorecido->favorecido}");
+        $this->pdf->Text($xTextoEtiqueta[$posisaoEtiqueta],$yTextoEtiqueta[$posisaoEtiqueta]+25,"Valor: {$memorando->valor} ");
+        $this->pdf->Text($xTextoEtiqueta[$posisaoEtiqueta],$yTextoEtiqueta[$posisaoEtiqueta]+30,"Conta: {$conta->conta}");
+
         $this->pdf->SetFont('Arial','',8);
-        for ($i = 1; $i <= 5; $i++){
-            $this->pdf->Text($xTextoEtiqueta[$i]+1,$yTextoEtiqueta[$i]+36,"Código N°:");
-            $this->pdf->Text($xTextoEtiqueta[$i]+1,$yTextoEtiqueta[$i]+43,"Lançamento N°:");
-            $this->pdf->Text($xTextoEtiqueta[$i]+1,$yTextoEtiqueta[$i]+50,"Empenho N°:");
-            $this->pdf->Text($xTextoEtiqueta[$i]+1,$yTextoEtiqueta[$i]+57,"Liquidação N°:");
-            $this->pdf->Text($xTextoEtiqueta[$i]+1,$yTextoEtiqueta[$i]+64,"Pagamento N°:");
-            $this->pdf->Text($xTextoEtiqueta[$i]+1,$yTextoEtiqueta[$i]+71,"Visto:");
+        $this->pdf->Text($xTextoEtiqueta[$posisaoEtiqueta]+1,$yTextoEtiqueta[$posisaoEtiqueta]+36,"Código N°:");
+        $this->pdf->Text($xTextoEtiqueta[$posisaoEtiqueta]+1,$yTextoEtiqueta[$posisaoEtiqueta]+43,"Lançamento N°:");
+        $this->pdf->Text($xTextoEtiqueta[$posisaoEtiqueta]+1,$yTextoEtiqueta[$posisaoEtiqueta]+50,"Empenho N°:");
+        $this->pdf->Text($xTextoEtiqueta[$posisaoEtiqueta]+1,$yTextoEtiqueta[$posisaoEtiqueta]+57,"Liquidação N°:");
+        $this->pdf->Text($xTextoEtiqueta[$posisaoEtiqueta]+1,$yTextoEtiqueta[$posisaoEtiqueta]+64,"Pagamento N°:");
+        $this->pdf->Text($xTextoEtiqueta[$posisaoEtiqueta]+1,$yTextoEtiqueta[$posisaoEtiqueta]+71,"Visto:");
 
-            $this->pdf->Rect($xRetangulo[$i]+5,$yRetangulo[$i]+39,60,7,'D');
-            $this->pdf->Rect($xRetangulo[$i]+5,$yRetangulo[$i]+46,60,7,'D');
-            $this->pdf->Rect($xRetangulo[$i]+5,$yRetangulo[$i]+53,60,7,'D');
-            $this->pdf->Rect($xRetangulo[$i]+5,$yRetangulo[$i]+60,60,7,'D');
-            $this->pdf->Rect($xRetangulo[$i]+5,$yRetangulo[$i]+67,60,7,'D');
-            $this->pdf->Rect($xRetangulo[$i]+5,$yRetangulo[$i]+74,60,7,'D');
-        }
+        $this->pdf->Rect($xRetangulo[$posisaoEtiqueta]+5,$yRetangulo[$posisaoEtiqueta]+39,60,7,'D');
+        $this->pdf->Rect($xRetangulo[$posisaoEtiqueta]+5,$yRetangulo[$posisaoEtiqueta]+46,60,7,'D');
+        $this->pdf->Rect($xRetangulo[$posisaoEtiqueta]+5,$yRetangulo[$posisaoEtiqueta]+53,60,7,'D');
+        $this->pdf->Rect($xRetangulo[$posisaoEtiqueta]+5,$yRetangulo[$posisaoEtiqueta]+60,60,7,'D');
+        $this->pdf->Rect($xRetangulo[$posisaoEtiqueta]+5,$yRetangulo[$posisaoEtiqueta]+67,60,7,'D');
+        $this->pdf->Rect($xRetangulo[$posisaoEtiqueta]+5,$yRetangulo[$posisaoEtiqueta]+74,60,7,'D');
 
-        for ($i = 0; $i <= 5; $i++){
-            $this->pdf->Rect($xRetangulo[$i],$yRetangulo[$i],101,81,'D');
-        }
-
-        $this->pdf->Output();
+        $this->pdf->Rect($xRetangulo[$posisaoEtiqueta],$yRetangulo[$posisaoEtiqueta],101,81,'D');
     }
 
 

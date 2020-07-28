@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "8bd10addf259c7c081fac2b92d26a4bd",
+    "content-hash": "fb1bfe464e8ca4898d18b36760f999c3",
     "packages": [
         {
             "name": "coffeecode/datalayer",
-            "version": "1.1.4",
+            "version": "1.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/robsonvleite/datalayer.git",
-                "reference": "17fecff8edb8fb5287648875f182acbb80389614"
+                "reference": "6a51fa227bba003be11519e7efa8338bc87460f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/robsonvleite/datalayer/zipball/17fecff8edb8fb5287648875f182acbb80389614",
-                "reference": "17fecff8edb8fb5287648875f182acbb80389614",
+                "url": "https://api.github.com/repos/robsonvleite/datalayer/zipball/6a51fa227bba003be11519e7efa8338bc87460f5",
+                "reference": "6a51fa227bba003be11519e7efa8338bc87460f5",
                 "shasum": ""
             },
             "require": {
@@ -53,7 +53,7 @@
                 "save",
                 "upinside"
             ],
-            "time": "2019-10-29T13:34:17+00:00"
+            "time": "2020-07-02T17:10:50+00:00"
         },
         {
             "name": "coffeecode/router",
@@ -99,6 +99,48 @@
                 "upinside"
             ],
             "time": "2019-09-30T16:29:47+00:00"
+        },
+        {
+            "name": "fpdf/fpdf",
+            "version": "1.82.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/coreydoughty/Fpdf.git",
+                "reference": "a8eb66ba732813f282a935775bceb72ffd40b15d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/coreydoughty/Fpdf/zipball/a8eb66ba732813f282a935775bceb72ffd40b15d",
+                "reference": "a8eb66ba732813f282a935775bceb72ffd40b15d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Fpdf\\": "src/Fpdf"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Corey Doughty",
+                    "email": "corey@doughty.ca"
+                }
+            ],
+            "description": "FPDF Composer Wrapper",
+            "homepage": "https://github.com/coreydoughty/Fpdf",
+            "keywords": [
+                "fpdf",
+                "pdf",
+                "wrapper"
+            ],
+            "time": "2020-02-15T12:05:43+00:00"
         },
         {
             "name": "league/plates",

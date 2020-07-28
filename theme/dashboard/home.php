@@ -19,7 +19,8 @@
             <th>Favorefido</th>
             <th></th>            
             <th></th>            
-            <th></th>            
+            <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -43,6 +44,10 @@
                 <td>
                   <a href="<?= $rota->bindRota("memorando.geraDocumento",$memorando->id); ?>" class="btn btn-info btn-sm">
                   <i class="fa fa-file-text-o"></i></a>
+                </td>
+                <td>
+                  <a href="<?= $rota->bindRota("memorando.geraDocumento",$memorando->id); ?>" class="btn btn-info btn-sm">
+                      <i class="fa fa-file"></i></a>
                 </td>
               </tr>
             <?php endforeach?>

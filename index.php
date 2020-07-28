@@ -50,7 +50,10 @@ $route->group("subelemento");
     $route->post("/update/{id}", "SubelementoController:update","subelemento.update");
 
 $route->group("etiqueta");
-    $route->get("/{id}", "EtiquetaController:edit","etiqueta.edit");
+    $route->get("/{id0}", "EtiquetaController:show","etiqueta.show");
+    $route->get("/{id0}/{id1}", "EtiquetaController:show","etiqueta.show");
+    $route->get("/{id0}/{id1}/{id2}", "EtiquetaController:show","etiqueta.show");
+    $route->get("/{id0}/{id1}/{id2}/{id3}", "EtiquetaController:show","etiqueta.show");
 
 
 
