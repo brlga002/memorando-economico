@@ -78,7 +78,7 @@ class EtiquetaController extends Controller
         $this->pdf->Rect($xRetangulo[$posisaoEtiqueta]+5,$yRetangulo[$posisaoEtiqueta]+67,60,7,'D');
         $this->pdf->Rect($xRetangulo[$posisaoEtiqueta]+5,$yRetangulo[$posisaoEtiqueta]+74,60,7,'D');
 
-        $this->pdf->Rect($xRetangulo[$posisaoEtiqueta],$yRetangulo[$posisaoEtiqueta],101,81,'D');
+        //$this->pdf->Rect($xRetangulo[$posisaoEtiqueta],$yRetangulo[$posisaoEtiqueta],101,81,'D');
     }
 
 

@@ -21,7 +21,7 @@
         </div>
           <div class="form-group">
               <label for="numeroProcesso" class=" form-control-label">Nº Processo</label>
-              <input type="text" id="numeroProcesso" name="numeroProcesso" class="form-control" required>
+              <input type="text" id="numeroProcesso" name="numeroProcesso"  value="00<?= $proximoNumero ?>/2020" class="form-control" required>
           </div>
         <div class="form-group">
           <label for="nDoc" class=" form-control-label">N° Doc</label>
@@ -29,6 +29,7 @@
         </div>
 
         <div class="form-group">
+            <label for="referente" class=" form-control-label">Referente</label>
         <select required class="form-control" id="referente" name="referente">
           <option value="">Escolha uma referente</option>
         <?php foreach ($referente as $key => $referente) : ?>            

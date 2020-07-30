@@ -54,6 +54,9 @@ $route->group("etiqueta");
     $route->get("/{id0}/{id1}", "EtiquetaController:show","etiqueta.show");
     $route->get("/{id0}/{id1}/{id2}", "EtiquetaController:show","etiqueta.show");
     $route->get("/{id0}/{id1}/{id2}/{id3}", "EtiquetaController:show","etiqueta.show");
+    $route->get("/{id0}/{id1}/{id2}/{id3}/{id4}", "EtiquetaController:show","etiqueta.show");
+    $route->get("/{id0}/{id1}/{id2}/{id3}/{id4}/{id5}", "EtiquetaController:show","etiqueta.show");
+    $route->get("/{id0}/{id1}/{id2}/{id3}/{id4}/{id5}/{id6}", "EtiquetaController:show","etiqueta.show");
 
 
 

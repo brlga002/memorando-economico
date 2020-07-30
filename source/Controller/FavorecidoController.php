@@ -33,7 +33,7 @@ class FavorecidoController extends Controller
 
     public function edit(array $data): void
     {          
-        $favorecido = (new Favorecido())->findById($data["id"]);
+        $favorecido = (new Favorecido())->findById($data["id"])->order("favorecido ASC");
   
         echo $this->view->render("favorecido/edit",[
             "title" => "Editar Favorecido | ". SITE,

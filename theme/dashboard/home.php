@@ -18,7 +18,8 @@
             <th>Referente</th>            
             <th>Favorefido</th>
             <th></th>            
-            <th></th>            
+            <th></th>
+            <th></th>
             <th></th>
             <th></th>
           </tr>
@@ -29,6 +30,7 @@
               <tr>
                 <th scope="row"><?= $memorando->id ?></th>
                 <td><?= $memorando->numero ?></td>                
+                <td><?= $memorando->numeroProcesso ?></td>
                 <td><?= date("d/m/Y",strtotime($memorando->dataMemorando)) ?></td>
                 <td><?= formataMoeda($memorando->valor,false)?></td>
                 <td><?= $memorando->referente() ?> <?= $memorando->referenteComplemento ?></td>
@@ -50,8 +52,7 @@
                        data-acao="Update link modal."
                        data-urlMemoEconomico="<?= $rota->bindRota("etiqueta.show",''); ?>"
                        data-memorandoId="<?= $memorando->id; ?>"
-                    <i class="fa fa-file"></i></a>
-                    </a>
+                    <i class="fa fa-trash"></i>ET</a>
                 </td>
               </tr>
             <?php endforeach?>
@@ -79,34 +80,34 @@
             <div class="modal-body">
                 <p>Selecione uma posição etiqueta</p>
                 <div class="col-6">
-                    <a class="btn btn-outline-primary btn-block" id="urlMemoEconomico1"  href="#">
+                    <a class="btn btn-outline-primary btn-block" id="urlMemoEconomico1"  href="#" target="_blank">
                         1
                     </a>
                 </div>
                 <div class="col-6">
-                    <a class="btn btn-outline-primary btn-block" id="urlMemoEconomico2"  href="#">
+                    <a class="btn btn-outline-primary btn-block" id="urlMemoEconomico2"  href="#" target="_blank">
                         2
                     </a>
                 </div>
                 <br><br>
                 <div class="col-6">
-                    <a class="btn btn-outline-primary btn-block" id="urlMemoEconomico3"  href="#">
+                    <a class="btn btn-outline-primary btn-block" id="urlMemoEconomico3"  href="#" target="_blank">
                         3
                     </a>
                 </div>
                 <div class="col-6">
-                    <a class="btn btn-outline-primary btn-block" id="urlMemoEconomico4"  href="#">
+                    <a class="btn btn-outline-primary btn-block" id="urlMemoEconomico4"  href="#" target="_blank">
                         4
                     </a>
                 </div>
                 <br><br>
                 <div class="col-6">
-                    <a class="btn btn-outline-primary btn-block" id="urlMemoEconomico5"  href="#">
+                    <a class="btn btn-outline-primary btn-block" id="urlMemoEconomico5"  href="#" target="_blank">
                         5
                     </a>
                 </div>
                 <div class="col-6">
-                    <a class="btn btn-outline-primary btn-block" id="urlMemoEconomico6"  href="#">
+                    <a class="btn btn-outline-primary btn-block" id="urlMemoEconomico6"  href="#" target="_blank">
                         6
                     </a>
                 </div>
